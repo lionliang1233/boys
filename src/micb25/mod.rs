@@ -68,7 +68,7 @@ mod tests {
     use std::fs;
     use super::boys;
     #[test]
-    fn boys_test() {
+    fn test_boys() {
         let data = fs::read_to_string("./benchmark_values.txt").expect("unable to read file");
 
         println!("-----------------------------------------------------------------------------------------------");
