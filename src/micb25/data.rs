@@ -1,4 +1,4 @@
-pub const BoysFuncValuesS: [[f64; 24]; 201] = [
+pub const BOYS_FUNC_VALUES_S: [[f64; 24]; 201] = [
     [
         0.000,
         0.1000000000000000e+01,
@@ -5227,7 +5227,7 @@ pub const BoysFuncValuesS: [[f64; 24]; 201] = [
     ],
 ];
 
-pub const BoysFuncValuesM: [[f64; 24]; 101] = [
+pub const BOYS_FUNC_VALUES_M: [[f64; 24]; 101] = [
     [
         5.00,
         0.3957123096105136e+00,
@@ -7856,7 +7856,7 @@ pub const BoysFuncValuesM: [[f64; 24]; 101] = [
     ],
 ];
 
-pub const BoysFuncValuesL: [[f64; 24]; 201] = [
+pub const BOYS_FUNC_VALUES_L: [[f64; 24]; 201] = [
     [
         10.0,
         0.2802473905066428e+00,

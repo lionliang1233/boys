@@ -17,12 +17,12 @@ pub fn boys(n: u64, t: f64) -> f64 {
             * (PI / t.powi(2 * n as i32 + 1)).sqrt()
     } else if t > 10.0 {
         let j = ((t - 9.95) * 10.0) as usize;
-        let dt = data::BoysFuncValuesL[j][0] - t as f64;
+        let dt = data::BOYS_FUNC_VALUES_L[j][0] - t as f64;
         let mut dti = dt;
-        let mut lres = data::BoysFuncValuesL[j][n as usize + 1];
+        let mut lres = data::BOYS_FUNC_VALUES_L[j][n as usize + 1];
         let epsrel = lres * eps;
         for i in 0..6 {
-            let sfac = data::BoysFuncValuesL[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
+            let sfac = data::BOYS_FUNC_VALUES_L[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
@@ -32,12 +32,12 @@ pub fn boys(n: u64, t: f64) -> f64 {
         lres
     } else if t > 5.0 {
         let j = ((t - 4.975) * 20.0) as usize;
-        let dt = data::BoysFuncValuesM[j][0] - t as f64;
+        let dt = data::BOYS_FUNC_VALUES_M[j][0] - t as f64;
         let mut dti = dt;
-        let mut lres = data::BoysFuncValuesM[j][n as usize + 1];
+        let mut lres = data::BOYS_FUNC_VALUES_M[j][n as usize + 1];
         let epsrel = lres * eps;
         for i in 0..6 {
-            let sfac = data::BoysFuncValuesM[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
+            let sfac = data::BOYS_FUNC_VALUES_M[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
@@ -47,12 +47,12 @@ pub fn boys(n: u64, t: f64) -> f64 {
         lres
     } else {
         let j = ((t * 40.0) + 0.5) as usize;
-        let dt = data::BoysFuncValuesS[j][0] - t as f64;
+        let dt = data::BOYS_FUNC_VALUES_S[j][0] - t as f64;
         let mut dti = dt;
-        let mut lres = data::BoysFuncValuesS[j][n as usize + 1];
+        let mut lres = data::BOYS_FUNC_VALUES_S[j][n as usize + 1];
         let epsrel = lres * eps;
         for i in 0..6 {
-            let sfac = data::BoysFuncValuesS[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
+            let sfac = data::BOYS_FUNC_VALUES_S[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
@@ -65,14 +65,17 @@ pub fn boys(n: u64, t: f64) -> f64 {
 
 #[cfg(test)]
 mod tests {
-    use std::fs;
     use super::boys;
+    use std::fs;
     #[test]
     fn test_boys() {
         let data = fs::read_to_string("./benchmark_values.txt").expect("unable to read file");
 
         println!("-----------------------------------------------------------------------------------------------");
-        println!("{:>5} {:>22} {:>22} {:>22} {:>22}", "N", "X", "calc.value", "ref. value", "diff");
+        println!(
+            "{:>5} {:>22} {:>22} {:>22} {:>22}",
+            "N", "X", "calc.value", "ref. value", "diff"
+        );
         println!("-----------------------------------------------------------------------------------------------");
         for line in data.lines() {
             let tokens: Vec<&str> = line.split_whitespace().collect();
@@ -82,7 +85,14 @@ mod tests {
                 let t: f64 = tokens[1].parse().unwrap();
                 let m: f64 = tokens[2].parse().unwrap();
                 let res = boys(n, t);
-                println!("{:5} {:22.16} {:22.16} {:22.16} {:22.16}", n, t, res, m, res - m);
+                println!(
+                    "{:5} {:22.16} {:22.16} {:22.16} {:22.16}",
+                    n,
+                    t,
+                    res,
+                    m,
+                    res - m
+                );
                 assert!((res - m).abs() < 1.0e-12);
             }
         }
