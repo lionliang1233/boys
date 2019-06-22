@@ -25,3 +25,20 @@ mod tests {
         assert!(boys(2, 2.0) - 0.0529428148329765 < thresh);
     }
 }
+
+extern crate test;
+use test::Bencher;
+
+#[bench]
+fn bench_boys_exact_2(b: &mut Bencher) {
+    b.iter(|| {
+        boys(2, 2.0);
+    });
+}
+
+#[bench]
+fn bench_boys_exact_14(b: &mut Bencher) {
+    b.iter(|| {
+        boys(14, 42.67768466983068);
+    });
+}

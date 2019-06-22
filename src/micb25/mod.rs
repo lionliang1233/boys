@@ -135,3 +135,20 @@ const N_FAC2_DBLE: [f64; 31] = [
     1428329123020800.0,
     6190283353629375.0,
 ];
+
+extern crate test;
+use test::Bencher;
+
+#[bench]
+fn bench_boys_micb25_2(b: &mut Bencher) {
+    b.iter(|| {
+        boys(2, 2.0);
+    });
+}
+
+#[bench]
+fn bench_boys_micb25_14(b: &mut Bencher) {
+    b.iter(|| {
+        boys(14, 42.67768466983068);
+    });
+}
