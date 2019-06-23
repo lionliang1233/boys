@@ -25,7 +25,7 @@ fn boys_term(n: u64, k: u64, x: f64) -> f64 {
     -x.powf(k as f64) * inverse_factorial(k) / ((2.0 * (k as f64)) + (2.0 * (n as f64)) + 1.0)
 }
 
-pub fn boys(n: u64, x: f64) -> f64 {
+pub fn boys1(n: u64, x: f64) -> f64 {
     let mut k = 0;
     let mut b = boys_term(n, k, x);
     let mut s = 0.0;
@@ -79,6 +79,10 @@ pub fn boys(n: u64, x: f64) -> f64 {
         k += 1;
         b = boys_term(n, k, x);
     }
+    s
+}
+
+pub fn boys2(n: u64, x: f64) -> f64 {
     println!("===================================================");
     println!(
         "{:>4} {:>2} {:>10} {:>12} {:>12} {:>14} {:>14} {:>14} {:>14} {:>14} {:>14} {:>14} {:>14}",
@@ -96,7 +100,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
         "sum",
         "fast sum"
     );
-    k = 0;
+    let mut k = 0;
     let mut knsum = 2.0 * n as f64 + 1.0;
     let mut invkfact = 1.0;
     let mut xpower = 1.0;
@@ -168,14 +172,18 @@ pub fn boys(n: u64, x: f64) -> f64 {
             fast
         );
     }
+    fast
+}
+
+pub fn boys3(n: u64, x: f64) -> f64 {
     println!("===================================================");
     println!("{:>4} {:>20} {:>20}", "k", "term", "sum");
     println!("===================================================");
-    k = 0;
-    xpower = 1.0;
-    invkfact = 1.0;
-    knsum = 2.0 * n as f64 + 1.0;
-    bterm_even = 1.0 / knsum;
+    let mut k = 0;
+    let mut xpower = 1.0;
+    let mut invkfact = 1.0;
+    let mut knsum = 2.0 * n as f64 + 1.0;
+    let mut bterm_even = 1.0 / knsum;
     let len: u64 = 1000;
     let mut fast_vec = Vec::with_capacity(len as usize);
     fast_vec.push(bterm_even);
@@ -191,7 +199,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
         knsum += 2.0;
         fast_vec.push(xpower * invkfact / knsum);
     }
-    fast = 0.0;
+    let mut fast = 0.0;
     k = 0;
     while k < len && fast_vec[k as usize].abs() > 1.0e-14 {
         fast += fast_vec[k as usize];
@@ -199,12 +207,14 @@ pub fn boys(n: u64, x: f64) -> f64 {
         k += 1;
     }
     println!("===================================================");
-    s
+    fast
 }
 
 #[cfg(test)]
 mod tests {
-    use super::boys;
+    use super::boys1;
+    use super::boys2;
+    use super::boys3;
     use super::inverse_factorial;
 
     #[test]
@@ -217,7 +227,11 @@ mod tests {
 
     #[test]
     fn test_boys() {
-        boys(2, 2.0);
+        let thresh = 1.0e-16;
+
+        assert!(boys1(2, 2.0) - 0.0529428148329765 < thresh);
+        assert!(boys2(2, 2.0) - 0.0529428148329765 < thresh);
+        assert!(boys3(2, 2.0) - 0.0529428148329765 < thresh);
         // boys(14, 42.67768466983068);
     }
 }
