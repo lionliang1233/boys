@@ -29,53 +29,54 @@ pub fn boys1(n: u64, x: f64) -> f64 {
     let mut k = 0;
     let mut b = boys_term(n, k, x);
     let mut s = 0.0;
-    println!("===================================================");
-    if x < 1.0 {
-        println!(
-            "{:>3} {:>3} {:>10} {:>14} {:>14} {:>14} {:>14}",
-            "n", "k", "x", "k!", "x^k", "BoysTerm(n,k,x)", "sum"
-        );
-    } else {
-        println!(
-            "{:>3} {:>3} {:>10} {:>14} {:>14} {:>14} {:>14} {:>14}",
-            "n", "k", "x", "k!", "x^k", "BoysTerm(n,k,x)", "sum", "BoysAsymp(n, x)"
-        );
-    }
-    while (k < 200) && (b.abs() > 1.0e-16) {
+    // println!("===================================================");
+    // if x < 1.0 {
+    //     println!(
+    //         "{:>3} {:>3} {:>10} {:>14} {:>14} {:>14} {:>14}",
+    //         "n", "k", "x", "k!", "x^k", "BoysTerm(n,k,x)", "sum"
+    //     );
+    // } else {
+    //     println!(
+    //         "{:>3} {:>3} {:>10} {:>14} {:>14} {:>14} {:>14} {:>14}",
+    //         "n", "k", "x", "k!", "x^k", "BoysTerm(n,k,x)", "sum", "BoysAsymp(n, x)"
+    //     );
+    // }
+    let len = 200;
+    while (k < len) && (b.abs() > 1.0e-16) {
         s += b;
-        if x < 10.0 {
-            println!(
-                "{:>3} {:>3} {:>10.5} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>3} {:>1}",
-                n,
-                k,
-                x,
-                inverse_factorial(k),
-                x.powf(k as f64),
-                b,
-                s,
-                k + 1,
-                if b.abs() < 1.0e-14 { '*' } else { ' ' }
-            );
-        } else {
-            println!(
-                "{:>3} {:>3} {:>10.5} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>3} {:>1} {:>2}",
-                n,
-                k,
-                x,
-                inverse_factorial(k),
-                x.powf(k as f64),
-                b,
-                s,
-                boys_asymp(n, x),
-                k + 1,
-                if b.abs() < 1.0e-14 { '*' } else { ' ' },
-                if (boys_asymp(n, x) - s).abs() < 1.0e-10 {
-                    "**"
-                } else {
-                    "  "
-                }
-            );
-        }
+        // if x < 10.0 {
+        //     println!(
+        //         "{:>3} {:>3} {:>10.5} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>3} {:>1}",
+        //         n,
+        //         k,
+        //         x,
+        //         inverse_factorial(k),
+        //         x.powf(k as f64),
+        //         b,
+        //         s,
+        //         k + 1,
+        //         if b.abs() < 1.0e-14 { '*' } else { ' ' }
+        //     );
+        // } else {
+        //     println!(
+        //         "{:>3} {:>3} {:>10.5} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>3} {:>1} {:>2}",
+        //         n,
+        //         k,
+        //         x,
+        //         inverse_factorial(k),
+        //         x.powf(k as f64),
+        //         b,
+        //         s,
+        //         boys_asymp(n, x),
+        //         k + 1,
+        //         if b.abs() < 1.0e-14 { '*' } else { ' ' },
+        //         if (boys_asymp(n, x) - s).abs() < 1.0e-10 {
+        //             "**"
+        //         } else {
+        //             "  "
+        //         }
+        //     );
+        // }
         k += 1;
         b = boys_term(n, k, x);
     }
@@ -83,110 +84,111 @@ pub fn boys1(n: u64, x: f64) -> f64 {
 }
 
 pub fn boys2(n: u64, x: f64) -> f64 {
-    println!("===================================================");
-    println!(
-        "{:>4} {:>2} {:>10} {:>12} {:>12} {:>14} {:>14} {:>14} {:>14} {:>14} {:>14} {:>14} {:>14}",
-        "n",
-        "k",
-        "x",
-        "2n+2k+1",
-        "fast 2n+2k+1",
-        "1/k!",
-        "fast 1/k!",
-        "x^k",
-        "fast x^k",
-        "BoystTerm",
-        "BoysTermFast",
-        "sum",
-        "fast sum"
-    );
+    // println!("===================================================");
+    // println!(
+    //     "{:>4} {:>2} {:>10} {:>12} {:>12} {:>14} {:>14} {:>14} {:>14} {:>14} {:>14} {:>14} {:>14}",
+    //     "n",
+    //     "k",
+    //     "x",
+    //     "2n+2k+1",
+    //     "fast 2n+2k+1",
+    //     "1/k!",
+    //     "fast 1/k!",
+    //     "x^k",
+    //     "fast x^k",
+    //     "BoystTerm",
+    //     "BoysTermFast",
+    //     "sum",
+    //     "fast sum"
+    // );
     let mut k = 0;
     let mut knsum = 2.0 * n as f64 + 1.0;
     let mut invkfact = 1.0;
     let mut xpower = 1.0;
     let mut bterm_even = 1.0 / knsum;
     let mut bterm_odd: f64;
-    let mut sum = boys_term(n, k, x);
+    // let mut sum = boys_term(n, k, x);
     let mut fast = 1.0 / knsum;
-    println!(
-        "{:>4} {:>2} {:>10.5} {:>12.6e} {:>12.6e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e}",
-        n,
-        k,
-        x,
-        2.0 * n as f64 + 2.0 * k as f64 + 1.0,
-        knsum,
-        inverse_factorial(k),
-        invkfact,
-        x.powf(k as f64),
-        xpower,
-        boys_term(n, k, x),
-        bterm_even,
-        sum,
-        fast
-    );
-    while k < 21 {
+    // println!(
+    //     "{:>4} {:>2} {:>10.5} {:>12.6e} {:>12.6e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e}",
+    //     n,
+    //     k,
+    //     x,
+    //     2.0 * n as f64 + 2.0 * k as f64 + 1.0,
+    //     knsum,
+    //     inverse_factorial(k),
+    //     invkfact,
+    //     x.powf(k as f64),
+    //     xpower,
+    //     boys_term(n, k, x),
+    //     bterm_even,
+    //     sum,
+    //     fast
+    // );
+    let len = 100;
+    // while k < 21 {
+    while k < len {
         k += 1;
-        sum += boys_term(n, k, x);
+        // sum += boys_term(n, k, x);
         xpower *= x;
         invkfact /= k as f64;
         knsum += 2.0;
         bterm_odd = -xpower * invkfact / knsum;
         fast += bterm_odd;
-        println!(
-            "{:>4} {:>2} {:>10.5} {:>12.6e} {:>12.6e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e}",
-            n,
-            k,
-            x,
-            2.0 * n as f64 + 2.0 * k as f64 + 1.0,
-            knsum,
-            inverse_factorial(k),
-            invkfact,
-            x.powf(k as f64),
-            xpower,
-            boys_term(n, k, x),
-            bterm_odd,
-            sum,
-            fast
-    );
+        //     println!(
+        //         "{:>4} {:>2} {:>10.5} {:>12.6e} {:>12.6e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e}",
+        //         n,
+        //         k,
+        //         x,
+        //         2.0 * n as f64 + 2.0 * k as f64 + 1.0,
+        //         knsum,
+        //         inverse_factorial(k),
+        //         invkfact,
+        //         x.powf(k as f64),
+        //         xpower,
+        //         boys_term(n, k, x),
+        //         bterm_odd,
+        //         sum,
+        //         fast
+        // );
         k += 1;
-        sum += boys_term(n, k, x);
+        // sum += boys_term(n, k, x);
         xpower *= x;
         invkfact /= k as f64;
         knsum += 2.0;
         bterm_even = xpower * invkfact / knsum;
         fast += bterm_even;
-        println!(
-            "{:>4} {:>2} {:>10.5} {:>12.6e} {:>12.6e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e}",
-            n,
-            k,
-            x,
-            2.0 * n as f64 + 2.0 * k as f64 + 1.0,
-            knsum,
-            inverse_factorial(k),
-            invkfact,
-            x.powf(k as f64),
-            xpower,
-            boys_term(n, k, x),
-            bterm_even,
-            sum,
-            fast
-        );
+        // println!(
+        //     "{:>4} {:>2} {:>10.5} {:>12.6e} {:>12.6e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e} {:>14.7e}",
+        //     n,
+        //     k,
+        //     x,
+        //     2.0 * n as f64 + 2.0 * k as f64 + 1.0,
+        //     knsum,
+        //     inverse_factorial(k),
+        //     invkfact,
+        //     x.powf(k as f64),
+        //     xpower,
+        //     boys_term(n, k, x),
+        //     bterm_even,
+        //     sum,
+        //     fast
+        // );
     }
     fast
 }
 
 pub fn boys3(n: u64, x: f64) -> f64 {
-    println!("===================================================");
-    println!("{:>4} {:>20} {:>20}", "k", "term", "sum");
-    println!("===================================================");
+    // println!("===================================================");
+    // println!("{:>4} {:>20} {:>20}", "k", "term", "sum");
+    // println!("===================================================");
     let mut k = 0;
     let mut xpower = 1.0;
     let mut invkfact = 1.0;
     let mut knsum = 2.0 * n as f64 + 1.0;
-    let mut bterm_even = 1.0 / knsum;
-    let len: u64 = 1000;
+    let len: u64 = 100;
     let mut fast_vec = Vec::with_capacity(len as usize);
-    fast_vec.push(bterm_even);
+    fast_vec.push(1.0 / knsum);
     while k < len {
         k += 1;
         xpower *= x;
@@ -203,10 +205,10 @@ pub fn boys3(n: u64, x: f64) -> f64 {
     k = 0;
     while k < len && fast_vec[k as usize].abs() > 1.0e-14 {
         fast += fast_vec[k as usize];
-        println!("{:>4} {:>24.14e} {:>24.14e}", k, fast_vec[k as usize], fast);
+        // println!("{:>4} {:>24.14e} {:>24.14e}", k, fast_vec[k as usize], fast);
         k += 1;
     }
-    println!("===================================================");
+    // println!("===================================================");
     fast
 }
 
