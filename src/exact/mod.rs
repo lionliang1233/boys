@@ -1,4 +1,4 @@
-fn boys(n: u64, x: f64) -> f64 {
+pub fn boys(n: u64, x: f64) -> f64 {
     let n = n as f64;
     if x > 0.0 {
         let f = 2.0 * x.powf(n + 0.5);
@@ -24,21 +24,4 @@ mod tests {
 
         assert!(boys(2, 2.0) - 0.0529428148329765 < thresh);
     }
-}
-
-extern crate test;
-use test::Bencher;
-
-#[bench]
-fn bench_boys_exact_2(b: &mut Bencher) {
-    b.iter(|| {
-        boys(2, 2.0);
-    });
-}
-
-#[bench]
-fn bench_boys_exact_14(b: &mut Bencher) {
-    b.iter(|| {
-        boys(14, 42.67768466983068);
-    });
 }
