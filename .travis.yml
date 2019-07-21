@@ -6,3 +6,10 @@ rust:
 matrix:
   allow_failures:
     - rust: nightly
+
+cache: cargo
+
+addons:
+  apt:
+    packages:
+      - libgsl0-dev
