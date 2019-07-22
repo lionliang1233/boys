@@ -8,9 +8,9 @@ pub fn boys(n: u64, x: f64) -> f64 {
         let gi = rgsl::gamma_beta::incomplete_gamma::gamma_inc_P_e(n + 0.5, x)
             .1
             .val;
-        return g * gi / f;
+        g * gi / f
     } else {
-        return 1.0 / (n * 2.0 + 1.0);
+        1.0 / (n * 2.0 + 1.0)
     }
 }
 
@@ -21,7 +21,9 @@ mod tests {
     #[test]
     fn test_boys() {
         let thresh = 1.0e-16;
-
-        assert!(boys(2, 2.0) - 0.0529428148329765 < thresh);
+        let ref_2_2p0 = 0.0529428148329765;
+        let ref_14_42p6 = 2.6578172951711814e-14;
+        assert!(boys(2, 2.0) - ref_2_2p0 < thresh);
+        assert!(boys(14, 42.67768466983068) - ref_14_42p6 < thresh);
     }
 }

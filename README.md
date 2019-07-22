@@ -17,7 +17,7 @@ via a number of methods:
 
 ## System dependencies
 
-The GNU Scientific Library (GSL) is used via the [`rgsl`](https://crates.io/crates/GSL) crate to provide the gamma and incomplete gamma functions for the exact implementation and the error function for Michael Böhme's algorithm.
+The [GNU Scientific Library](https://www.gnu.org/software/gsl/) (GSL) is used via the [`rgsl`](https://crates.io/crates/GSL) crate to provide the gamma and incomplete gamma functions for the exact implementation and the error function for Michael Böhme's algorithm.
 
 - Debian/Ubuntu: `sudo apt-get install libgsl0-dev`
 - Arch Linux: `sudo pacman -S gsl`
