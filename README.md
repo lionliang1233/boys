@@ -25,4 +25,4 @@ The [GNU Scientific Library](https://www.gnu.org/software/gsl/) (GSL) is used vi
 
 ## Literature
 
-S. F. Boys, *Proc R. Soc. Am.* **1950**, *200*, 542.
+[S. F. Boys, *Proc R. Soc. Am.* **1950**, *200*, 542.](https://doi.org/10.1098/rspa.1950.0036)
