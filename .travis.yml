@@ -13,3 +13,9 @@ addons:
   apt:
     packages:
       - libgsl0-dev
+
+# not `after_success` to make sure benchmarks always compile properly
+after_script:
+  - if [[ $TRAVIS_RUST_VERSION == "stable" ]]; then
+        cargo bench
+    fi
