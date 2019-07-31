@@ -2,7 +2,7 @@ use std::f64::consts::PI;
 
 fn inverse_factorial(n: u64) -> f64 {
     let mut r = 1.0;
-    for i in 1..(n + 1) {
+    for i in 1..=n {
         r /= i as f64;
     }
     r
@@ -10,7 +10,7 @@ fn inverse_factorial(n: u64) -> f64 {
 
 fn double_factorial(n: u64) -> u64 {
     let mut r = 1;
-    for i in 1..(n + 1) {
+    for i in 1..=n {
         r *= 2 * i - 1;
     }
     r

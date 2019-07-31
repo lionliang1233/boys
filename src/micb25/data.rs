@@ -1,3 +1,4 @@
+#![allow(clippy::excessive_precision, clippy::unreadable_literal)]
 pub const BOYS_FUNC_VALUES_S: [[f64; 24]; 201] = [
     [
         0.000,

@@ -13,7 +13,7 @@ A Rust library for calculation of the Boys function
 via a number of methods:
 
 - An "exact" algorithm originally from [Radovan Bast](https://github.com/bast/obara-saika/blob/52ff0fa4d470eeb7a41d932078b2e4d9a54d05e5/obara_saika.py#L371).
-- A non-clean-room reimplementation of [Michael Böhme's algorithm](https://github.com/micb25/libboys)
+- A non-clean-room reimplementation of [Michael Böhme's algorithm](https://github.com/micb25/libboys).
 
 ## System dependencies
 
