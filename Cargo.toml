@@ -13,3 +13,8 @@ criterion = "0.2"
 [[bench]]
 name = "boys_benchmark"
 harness = false
+
+[package.metadata.docs.rs]
+# See https://stackoverflow.com/q/46495063 for how to possibly use KaTeX
+# instead of MathJax in the future
+rustdoc-args = ["--html-in-header", "doc/mathjax.html"]
