@@ -1,3 +1,4 @@
+---
 language: rust
 rust:
   - stable
@@ -19,6 +20,7 @@ git:
 
 # not `after_success` to make sure benchmarks always compile properly
 after_script:
-  - if [[ $TRAVIS_RUST_VERSION == "stable" ]]; then
-        cargo bench
-    fi
+  -|
+  if [[ $TRAVIS_RUST_VERSION == "stable" ]]; then
+      bash .travis/bench_branch_against_master.bash
+  fi
