@@ -19,6 +19,9 @@ addons:
 git:
   depth: 10
 
+before_install:
+  - rustup component add rustfmt
+
 before_script:
   - cargo fmt --all -- --check
 
