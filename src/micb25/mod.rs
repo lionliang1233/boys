@@ -4,20 +4,20 @@ use rgsl::error::erf;
 
 mod data;
 
-pub fn boys(n: u64, t: f64) -> f64 {
+pub fn boys(n: u64, x: f64) -> f64 {
     let eps = 1.0e-12;
-    if n == 0 && t < eps {
+    if n == 0 && x < eps {
         1.0
     } else if n == 0 {
-        (PI / (4.0 * t)).sqrt() * erf(t.sqrt())
-    } else if t < eps {
+        (PI / (4.0 * x)).sqrt() * erf(x.sqrt())
+    } else if x < eps {
         1.0 / ((2.0 * n as f64) + 1.0)
-    } else if t > 30.0 {
+    } else if x > 30.0 {
         N_FAC2_DBLE[(2 * (n - 1) + 2) as usize] / 2.0_f64.powi(n as i32 + 1)
-            * (PI / t.powi(2 * n as i32 + 1)).sqrt()
-    } else if t > 10.0 {
-        let j = ((t - 9.95) * 10.0) as usize;
-        let dt = data::BOYS_FUNC_VALUES_L[j][0] - t as f64;
+            * (PI / x.powi(2 * n as i32 + 1)).sqrt()
+    } else if x > 10.0 {
+        let j = ((x - 9.95) * 10.0) as usize;
+        let dt = data::BOYS_FUNC_VALUES_L[j][0] - x as f64;
         let mut dti = dt;
         let mut lres = data::BOYS_FUNC_VALUES_L[j][n as usize + 1];
         let epsrel = lres * eps;
@@ -30,9 +30,9 @@ pub fn boys(n: u64, t: f64) -> f64 {
             dti *= dt;
         }
         lres
-    } else if t > 5.0 {
-        let j = ((t - 4.975) * 20.0) as usize;
-        let dt = data::BOYS_FUNC_VALUES_M[j][0] - t as f64;
+    } else if x > 5.0 {
+        let j = ((x - 4.975) * 20.0) as usize;
+        let dt = data::BOYS_FUNC_VALUES_M[j][0] - x as f64;
         let mut dti = dt;
         let mut lres = data::BOYS_FUNC_VALUES_M[j][n as usize + 1];
         let epsrel = lres * eps;
@@ -46,8 +46,8 @@ pub fn boys(n: u64, t: f64) -> f64 {
         }
         lres
     } else {
-        let j = ((t * 40.0) + 0.5) as usize;
-        let dt = data::BOYS_FUNC_VALUES_S[j][0] - t as f64;
+        let j = ((x * 40.0) + 0.5) as usize;
+        let dt = data::BOYS_FUNC_VALUES_S[j][0] - x as f64;
         let mut dti = dt;
         let mut lres = data::BOYS_FUNC_VALUES_S[j][n as usize + 1];
         let epsrel = lres * eps;
