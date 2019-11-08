@@ -6,6 +6,7 @@ mod data;
 
 pub fn boys(n: u64, x: f64) -> f64 {
     let eps = 1.0e-12;
+    let max_recursion_depth = 6;
     if n == 0 && x < eps {
         1.0
     } else if n == 0 {
@@ -21,7 +22,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
         let mut dti = dt;
         let mut lres = data::BOYS_FUNC_VALUES_L[j][n as usize + 1];
         let epsrel = lres * eps;
-        for i in 0..6 {
+        for i in 0..max_recursion_depth {
             let sfac = data::BOYS_FUNC_VALUES_L[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
             lres += sfac;
             if sfac.abs() < epsrel {
@@ -36,7 +37,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
         let mut dti = dt;
         let mut lres = data::BOYS_FUNC_VALUES_M[j][n as usize + 1];
         let epsrel = lres * eps;
-        for i in 0..6 {
+        for i in 0..max_recursion_depth {
             let sfac = data::BOYS_FUNC_VALUES_M[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
             lres += sfac;
             if sfac.abs() < epsrel {
@@ -51,7 +52,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
         let mut dti = dt;
         let mut lres = data::BOYS_FUNC_VALUES_S[j][n as usize + 1];
         let epsrel = lres * eps;
-        for i in 0..6 {
+        for i in 0..max_recursion_depth {
             let sfac = data::BOYS_FUNC_VALUES_S[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
             lres += sfac;
             if sfac.abs() < epsrel {
