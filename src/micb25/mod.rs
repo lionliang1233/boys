@@ -18,47 +18,47 @@ pub fn boys(n: u64, x: f64) -> f64 {
             * (PI / x.powi(2 * n as i32 + 1)).sqrt()
     } else if x > 10.0 {
         let j = ((x - 9.95) * 10.0) as usize;
-        let dt = data::BOYS_FUNC_VALUES_L[j][0] - x as f64;
-        let mut dti = dt;
+        let dx = data::BOYS_FUNC_VALUES_L[j][0] - x as f64;
+        let mut dxi = dx;
         let mut lres = data::BOYS_FUNC_VALUES_L[j][n as usize + 1];
         let epsrel = lres * eps;
         for i in 0..max_recursion_depth {
-            let sfac = data::BOYS_FUNC_VALUES_L[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
+            let sfac = data::BOYS_FUNC_VALUES_L[j][n as usize + 2 + i] * dxi / N_FAC_DBLE[i];
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
             }
-            dti *= dt;
+            dxi *= dx;
         }
         lres
     } else if x > 5.0 {
         let j = ((x - 4.975) * 20.0) as usize;
-        let dt = data::BOYS_FUNC_VALUES_M[j][0] - x as f64;
-        let mut dti = dt;
+        let dx = data::BOYS_FUNC_VALUES_M[j][0] - x as f64;
+        let mut dxi = dx;
         let mut lres = data::BOYS_FUNC_VALUES_M[j][n as usize + 1];
         let epsrel = lres * eps;
         for i in 0..max_recursion_depth {
-            let sfac = data::BOYS_FUNC_VALUES_M[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
+            let sfac = data::BOYS_FUNC_VALUES_M[j][n as usize + 2 + i] * dxi / N_FAC_DBLE[i];
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
             }
-            dti *= dt;
+            dxi *= dx;
         }
         lres
     } else {
         let j = ((x * 40.0) + 0.5) as usize;
-        let dt = data::BOYS_FUNC_VALUES_S[j][0] - x as f64;
-        let mut dti = dt;
+        let dx = data::BOYS_FUNC_VALUES_S[j][0] - x as f64;
+        let mut dxi = dx;
         let mut lres = data::BOYS_FUNC_VALUES_S[j][n as usize + 1];
         let epsrel = lres * eps;
         for i in 0..max_recursion_depth {
-            let sfac = data::BOYS_FUNC_VALUES_S[j][n as usize + 2 + i] * dti / N_FAC_DBLE[i];
+            let sfac = data::BOYS_FUNC_VALUES_S[j][n as usize + 2 + i] * dxi / N_FAC_DBLE[i];
             lres += sfac;
             if sfac.abs() < epsrel {
                 return lres;
             }
-            dti *= dt;
+            dxi *= dx;
         }
         lres
     }
