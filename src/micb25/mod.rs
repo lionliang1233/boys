@@ -5,7 +5,7 @@ use rgsl::error::erf;
 mod data;
 
 pub fn boys(n: u64, x: f64) -> f64 {
-    let eps = 1.0e-12;
+    let eps = 1.0e-14;
     let max_recursion_depth = 6;
     if n == 0 && x < eps {
         1.0
@@ -13,7 +13,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
         (PI / (4.0 * x)).sqrt() * erf(x.sqrt())
     } else if x < eps {
         1.0 / ((2.0 * n as f64) + 1.0)
-    } else if x > 30.0 {
+    } else if x > 50.0 {
         N_FAC2_DBLE[(2 * (n - 1) + 2) as usize] / 2.0_f64.powi(n as i32 + 1)
             * (PI / x.powi(2 * n as i32 + 1)).sqrt()
     } else if x > 10.0 {
