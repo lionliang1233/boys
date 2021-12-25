@@ -2,6 +2,9 @@
 name = "boys"
 version = "0.1.0"
 authors = ["Eric Berquist <eric.berquist@gmail.com>"]
+description = "Different algorithms for calculating the Boys function"
+repository = "https://github.com/berquist/boys"
+readme = "README.md"
 edition = "2018"
 
 [dependencies]

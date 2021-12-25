@@ -19,9 +19,11 @@ via a number of methods:
 
 The [GNU Scientific Library](https://www.gnu.org/software/gsl/) (GSL) is used via the [`rgsl`](https://crates.io/crates/GSL) crate to provide the gamma and incomplete gamma functions for the exact implementation and the error function for Michael Böhme's algorithm.
 
-- Debian/Ubuntu: `sudo apt-get install libgsl0-dev`
-- Arch Linux: `sudo pacman -S gsl`
-- macOS (using Homebrew): `brew install gsl`
+| OS/distro              | install command                    |
+|------------------------|------------------------------------|
+| Debian/Ubuntu          | `sudo apt-get install libgsl0-dev` |
+| Arch Linux             | `sudo pacman -S gsl`               |
+| macOS (using Homebrew) | `brew install gsl`                 |
 
 ## Literature
 
