@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.com/berquist/boys.svg?branch=master)](https://travis-ci.com/berquist/boys)
 [![License](https://img.shields.io/github/license/berquist/boys.svg)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/berquist/boys.svg)](https://github.com/berquist/boys/issues)
-<!-- [![crates.io](https://img.shields.io/crates/v/boys.svg)](https://crates.io/crates/boys) -->
-<!-- [![Docs.rs](https://docs.rs/boys/badge.svg)](https://docs.rs/boys) -->
+[![crates.io](https://img.shields.io/crates/v/boys.svg)](https://crates.io/crates/boys)
+[![Docs.rs](https://docs.rs/boys/badge.svg)](https://docs.rs/boys)
 
 # boys
 

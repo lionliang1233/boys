@@ -1,10 +1,10 @@
 [package]
 name = "boys"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Eric Berquist <eric.berquist@gmail.com>"]
 description = "Different algorithms for calculating the Boys function"
 repository = "https://github.com/berquist/boys"
-license-file = "LICENSE"
+license = "LGPL3"
 readme = "README.md"
 categories = ["science"]
 keywords = ["Chemistry"]
