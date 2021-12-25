@@ -257,13 +257,13 @@ mod tests {
     #[test]
     fn test_boys() {
         let thresh = 1.0e-16;
-        let ref_2_2p0 = 0.0529428148329765;
-        let ref_14_42p6 = 2.6578172951711814e-14;
+        let ref_2_2p0 = 0.052_942_814_832_976_5;
+        let ref_14_42p6 = 2.657_817_295_171_181_4e-14;
         assert!(boys1(2, 2.0) - ref_2_2p0 < thresh);
         assert!(boys2(2, 2.0) - ref_2_2p0 < thresh);
         assert!(boys3(2, 2.0) - ref_2_2p0 < thresh);
-        // assert!(boys1(14, 42.67768466983068) - ref_14_42p6 < thresh);
-        // assert!(boys2(14, 42.67768466983068) - ref_14_42p6 < thresh);
-        assert!(boys3(14, 42.67768466983068) - ref_14_42p6 < thresh);
+        // assert!(boys1(14, 42.677_684_669_830_68) - ref_14_42p6 < thresh);
+        // assert!(boys2(14, 42.677_684_669_830_68) - ref_14_42p6 < thresh);
+        assert!(boys3(14, 42.677_684_669_830_68) - ref_14_42p6 < thresh);
     }
 }
