@@ -6,7 +6,7 @@ pub fn boys(n: u64, x: f64) -> f64 {
         // need the "upper" incomplete gamma function, integrate from x to infty
         // regularized -> divide by gamma function
         let gi = rgsl::gamma_beta::incomplete_gamma::gamma_inc_P_e(n + 0.5, x)
-            .1
+            .unwrap()
             .val;
         g * gi / f
     } else {
