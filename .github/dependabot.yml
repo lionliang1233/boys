@@ -10,7 +10,3 @@ updates:
     allow:
       - dependency-type: direct
       - dependency-type: indirect
-    ignore:
-      - dependency-name: GSL
-        versions:
-          - 3.0.0
