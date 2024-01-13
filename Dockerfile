@@ -7,10 +7,11 @@ RUN \
     && apt-get install -y libgsl-dev \
     && rm -rf /var/lib/apt/lists/*
 
+RUN cargo install cargo-tarpaulin
+
 WORKDIR /code/boys
 COPY . .
 RUN \
     --mount=type=cache,target=/code/boys/target \
-    cargo install cargo-tarpaulin \
-    && cargo tarpaulin --workspace --all-features --out Xml \
+    cargo tarpaulin --workspace --all-features --out Xml \
     && cargo build --release
