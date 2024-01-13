@@ -12,4 +12,5 @@ COPY . .
 RUN \
     --mount=type=cache,target=/code/boys/target \
     cargo install cargo-tarpaulin \
-    && cargo test
+    && cargo tarpaulin --workspace --all-features --out Xml \
+    && cargo build --release
