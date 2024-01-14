@@ -1,10 +1,11 @@
 ARG RUST_VERSION=1.75
 FROM rust:${RUST_VERSION} as builder
 
+# hadolint ignore=DL3008
 RUN \
     --mount=type=cache,target=/var/cache/apt \
     apt-get update \
-    && apt-get install -y libgsl-dev \
+    && apt-get install -y --no-install-recommends libgsl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN cargo install cargo-tarpaulin
