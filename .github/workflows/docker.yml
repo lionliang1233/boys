@@ -29,6 +29,39 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Cache var-cache-apt
+        uses: actions/cache@v3
+        with:
+          path: var-cache-apt
+          key: var-cache-apt-${{ hashFiles('Containerfile') }}
+      - name: Cache var-lib-apt
+        uses: actions/cache@v3
+        with:
+          path: var-lib-apt
+          key: var-lib-apt-${{ hashFiles('Containerfile') }}
+      - name: Cache cargo
+        uses: actions/cache@v3
+        with:
+          path: cargo
+          key: cargo-${{ hashFiles('Containerfile') }}
+      - name: Inject var-cache-apt into Docker
+        uses: reproducible-containers/buildkit-cache-dance@v2.1.2
+        with:
+          cache-source: var-cache-apt
+          cache-target: /var/cache/apt
+          skip-extraction: ${{ steps.cache-var-cache-apt.outputs.cache-hit }}
+      - name: Inject var-lib-apt into Docker
+        uses: reproducible-containers/buildkit-lib-dance@v2.1.2
+        with:
+          cache-source: var-lib-apt
+          cache-target: /var/lib/apt
+          skip-extraction: ${{ steps.cache-var-lib-apt.outputs.cache-hit }}
+      - name: Inject cargo into Docker
+        uses: reproducible-containers/buildkit-lib-dance@v2.1.2
+        with:
+          cache-source: cargo
+          cache-target: /code/boys/target
+          skip-extraction: ${{ steps.cache-cargo.outputs.cache-hit }}
       - name: Build
         uses: docker/build-push-action@v5
         with:
