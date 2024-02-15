@@ -1,5 +1,9 @@
 FROM rust:1.76 as builder
 
+LABEL org.opencontainers.image.source=https://github.com/berquist/boys
+LABEL org.opencontainers.image.description="build image for boys Rust crate"
+LABEL org.opencontainers.image.licenses=GPL-3.0-only
+
 # hadolint ignore=DL3008
 RUN \
     --mount=type=cache,target=/var/cache/apt \

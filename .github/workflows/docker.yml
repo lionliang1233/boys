@@ -16,7 +16,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            berquist/boys
+            ghcr.io/berquist/boys
           flavor: |
             latest=true
           tags: |
