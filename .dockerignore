@@ -1,6 +1,4 @@
 /target
-**/*.rs.bk
-Cargo.lock
 
 .ccls-cache/
 cobertura.xml
