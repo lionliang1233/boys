@@ -51,13 +51,13 @@ jobs:
           cache-target: /var/cache/apt
           skip-extraction: ${{ steps.cache-var-cache-apt.outputs.cache-hit }}
       - name: Inject var-lib-apt into Docker
-        uses: reproducible-containers/buildkit-lib-dance@v2.1.2
+        uses: reproducible-containers/buildkit-cache-dance@v2.1.2
         with:
           cache-source: var-lib-apt
           cache-target: /var/lib/apt
           skip-extraction: ${{ steps.cache-var-lib-apt.outputs.cache-hit }}
       - name: Inject cargo into Docker
-        uses: reproducible-containers/buildkit-lib-dance@v2.1.2
+        uses: reproducible-containers/buildkit-cache-dance@v2.1.2
         with:
           cache-source: cargo
           cache-target: /code/boys/target
